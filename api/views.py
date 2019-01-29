@@ -29,6 +29,8 @@ class MessageViewSet(viewsets.ModelViewSet):
             return self.process_answer(high_class)
         elif (high_class == "homepage"):
             return self.process_answer(high_class)
+        elif (high_class == "greeting"):
+            return self.process_answer(high_class)
         else:
             return "noData"
 
