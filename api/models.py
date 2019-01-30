@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Message(models.Model):
+    id=models.IntegerField(auto_created=True, primary_key=True)
     person = models.CharField(max_length=30)
     text = models.TextField()
     subText = models.CharField(blank=True, max_length=30)

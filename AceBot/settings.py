@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
+import config.config as con
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,7 +26,7 @@ SECRET_KEY = '-l7kfet^r29c_(36t=1^f7o_@i%r57-=rnbk0j5%fbm$i$b*z$'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'bbc71f4e.ngrok.io',
+    'c8c00314.ngrok.io',
     '127.0.0.1'
 ]
 
@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'django',
         'USER': 'root',
         'PASSWORD':'',
-        'HOST':'localhost',
+        'HOST':con.dbconfig.get("host"),
     }
 }
 
