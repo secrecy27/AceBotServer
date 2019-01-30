@@ -12,24 +12,23 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import config.config as con
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-l7kfet^r29c_(36t=1^f7o_@i%r57-=rnbk0j5%fbm$i$b*z$'
+SECRET_KEY = con.key.get("secret")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'c8c00314.ngrok.io',
-    '127.0.0.1'
+    con.host.get("host1"),
+    # con.host.get("host2")
 ]
-
 
 # Application definition
 
@@ -75,20 +74,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'AceBot.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER': 'root',
-        'PASSWORD':'',
-        'HOST':con.dbconfig.get("host"),
+        'ENGINE': con.dbconfig.get("engine"),
+        'NAME': con.dbconfig.get("name"),
+        'USER': con.dbconfig.get("user"),
+        'PASSWORD': con.dbconfig.get("password"),
+        'HOST': con.dbconfig.get("host"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -108,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -121,7 +117,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
