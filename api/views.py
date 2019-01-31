@@ -19,17 +19,27 @@ class MessageViewSet(viewsets.ModelViewSet):
         high_class, high_score = n.classify(question)
         print("question : ", question, "/ class : ", high_class, "/ score : ", high_score)
 
-        if (high_class == "daios"):
+        if high_class == "daios":
             return self.process_answer(high_class)
-        elif (high_class == "whitepaper" and "백서" in question):
+        elif high_class == "whitepaper" and "백서" in question:
             return self.process_answer(high_class)
-        elif (high_class == "member"):
+        elif high_class == "member":
             return self.process_answer(high_class)
-        elif (high_class == "private_sale"):
+        elif high_class == "private_sale":
             return self.process_answer(high_class)
-        elif (high_class == "homepage"):
+        elif high_class == "homepage":
             return self.process_answer(high_class)
-        elif (high_class == "greeting"):
+        elif high_class == "greeting":
+            return self.process_answer(high_class)
+        elif high_class == "morning":
+            return self.process_answer(high_class)
+        elif high_class == "lunch":
+            return self.process_answer(high_class)
+        elif high_class == "congratulations":
+            return self.process_answer(high_class)
+        elif high_class == "event":
+            return self.process_answer(high_class)
+        elif high_class == "laugh":
             return self.process_answer(high_class)
         else:
             return "noData"
@@ -38,7 +48,7 @@ class MessageViewSet(viewsets.ModelViewSet):
     def process_answer(answer_class):
         base_path = "answer/"
         with open(base_path + answer_class, "r", encoding="utf-8") as f:
-            lines=f.readlines()
+            lines = f.readlines()
             number = len(lines)
             i = randint(1, number)
             answer = lines[i - 1]
@@ -56,6 +66,7 @@ class MessageViewSet(viewsets.ModelViewSet):
         result['answer'] = answer
 
         serializer = self.get_serializer(data=request.data)
-        if (serializer.is_valid()):
+        if serializer.is_valid():
             self.perform_create(serializer)
-        return JsonResponse(result, status=201)
+
+        return JsonResponse(result)
