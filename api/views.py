@@ -41,6 +41,8 @@ class MessageViewSet(viewsets.ModelViewSet):
             return self.process_answer(high_class)
         elif high_class == "laugh":
             return self.process_answer(high_class)
+        elif high_class == "ella":
+            return self.process_answer(high_class)
         else:
             return "noData"
 
