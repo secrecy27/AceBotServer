@@ -37,7 +37,7 @@ class MessageViewSet(viewsets.ModelViewSet):
             return self.process_answer(high_class)
         elif high_class == "congratulations":
             return self.process_answer(high_class)
-        elif high_class == "event":
+        elif high_class == "event" and "이벤트" in question:
             return self.process_answer(high_class)
         elif high_class == "laugh":
             return self.process_answer(high_class)
