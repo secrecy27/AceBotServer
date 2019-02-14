@@ -19,30 +19,19 @@ class MessageViewSet(viewsets.ModelViewSet):
         high_class, high_score = n.classify(question)
         print("question : ", question, "/ class : ", high_class, "/ score : ", high_score)
 
-        if high_class == "daios":
-            return self.process_answer(high_class)
-        elif high_class == "whitepaper" and "백서" in question:
-            return self.process_answer(high_class)
-        elif high_class == "member":
-            return self.process_answer(high_class)
-        elif high_class == "private_sale":
-            return self.process_answer(high_class)
-        elif high_class == "homepage":
-            return self.process_answer(high_class)
-        elif high_class == "greeting":
-            return self.process_answer(high_class)
-        elif high_class == "morning":
-            return self.process_answer(high_class)
-        elif high_class == "lunch":
-            return self.process_answer(high_class)
-        elif high_class == "congratulations":
-            return self.process_answer(high_class)
-        elif high_class == "event" and "이벤트" in question:
-            return self.process_answer(high_class)
-        elif high_class == "laugh":
-            return self.process_answer(high_class)
-        elif high_class == "ella":
-            return self.process_answer(high_class)
+        className = ["daios", "member", "private_sale", "homepage", "greeting", "morning",
+                     "lunch", "congratulations", "laugh", "ella",
+                     "whitepaper", "event", "advertising"]
+        condition = {"whitepaper":"백서", "event":"이벤트", "advertising":"http"}
+
+        if high_class in className:
+            if high_class in condition:
+                if condition[high_class] in question :
+                    return self.process_answer(high_class)
+                else:
+                    return "noData"
+            else:
+                return self.process_answer(high_class)
         else:
             return "noData"
 
