@@ -22,14 +22,29 @@ class MessageViewSet(viewsets.ModelViewSet):
         className = ["daios", "member", "private_sale", "homepage", "greeting", "morning",
                      "lunch", "congratulations", "laugh", "ella",
                      "whitepaper", "event", "advertising"]
-        condition = {"whitepaper":"백서", "event":"이벤트", "advertising":"http"}
+        condition = {"whitepaper": {"word": "백서"}, "event": {"word": "이벤트"},
+                     "advertising": {"length": "100", "word": "http"}}
 
         if high_class in className:
             if high_class in condition:
-                if condition[high_class] in question :
-                    return self.process_answer(high_class)
-                else:
-                    return "noData"
+                for k in condition[high_class].keys():
+                    # k = word, length
+                    if k in "length":
+                        if len(question) > int(condition[high_class][k]):
+                            return self.process_answer(high_class)
+                        else:
+                            return "noData"
+                    else:
+                        if condition[high_class][k] in question:
+                            return self.process_answer(high_class)
+                        else:
+                            return "noData"
+                        # print("11",condition[high_class][k])
+                        # if str(i for i in condition[high_class][k]) in question:
+                        #     print("잇음")
+                        # else:
+                        #     print("here : ",(i for i in condition[high_class][k]))
+                        #     print("없음")
             else:
                 return self.process_answer(high_class)
         else:
