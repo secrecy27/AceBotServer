@@ -2,7 +2,8 @@
 이름은 아직 가칭입니다.
 
 # Install
-
+### pip install
+pip install -r requirements.txt
 ### 마이그레이션 파일 생성
 python manage.py makemigrations
 ### 마이그레이션 적용
