@@ -65,6 +65,7 @@ class MessageViewSet(viewsets.ModelViewSet):
         text = request.data['text']
         answer = self.process_request(text)
 
+
         result = {}
         result['person'] = person
         result['text'] = text
