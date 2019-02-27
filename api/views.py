@@ -1,6 +1,4 @@
-import os
 from random import randint
-
 from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework.decorators import action, api_view
@@ -56,7 +54,7 @@ class MessageViewSet(viewsets.ModelViewSet):
         base_path = "answer/"
         condition = ["weather","dirtcast"]
 
-        if answer_class in condition : # 단일 파일 내용 리턴
+        if answer_class in condition : # 단일 파일 내용을 통째로 반환
             with open(base_path + answer_class, "r", encoding="utf-8") as f:
                 lines = f.readlines()
                 answer = ''
@@ -64,7 +62,7 @@ class MessageViewSet(viewsets.ModelViewSet):
                     answer = str(line) + answer
                 return answer
 
-        else: # 라인별 리턴
+        else : # 파일 내용을 라인별 무작위 반환
             with open(base_path + answer_class, "r", encoding="utf-8") as f:
                 lines = f.readlines()
                 number = len(lines)
