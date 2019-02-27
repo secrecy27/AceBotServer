@@ -22,7 +22,7 @@ def prefixDirt():
     return secrets.choice(words)
 
 def sufixDirt():
-    words = ['다이오스봇이 이어서 미세먼지 지도를 첨부해줄겁니다.'
+    words = ['다이오스봇~ 미세먼지 지도 부탁해~'
              ]
     return secrets.choice(words)
 
