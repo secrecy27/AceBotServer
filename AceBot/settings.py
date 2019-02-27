@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     con.host.get("host1"),
-    con.host.get("host2")
+    # con.host.get("host2")
 ]
 
 # Application definition
