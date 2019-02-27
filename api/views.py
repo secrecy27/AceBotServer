@@ -19,9 +19,10 @@ class MessageViewSet(viewsets.ModelViewSet):
         high_class, high_score = n.classify(question)
         print("question : ", question, "/ class : ", high_class, "/ score : ", high_score)
 
+        # className에 카테고리 추가, conversation 디렉터리안의 파일로 참조
         className = ["daios", "member", "private_sale", "homepage", "greeting", "morning",
                      "lunch", "congratulations", "laugh", "ella",
-                     "whitepaper", "event", "advertising"]
+                     "whitepaper", "event", "advertising", "weather", "dirtcast"]
         condition = {"whitepaper": {"word": "백서"}, "event": {"word": "이벤트"},
                      "advertising": {"length": "100", "word": "http"}}
 
@@ -41,7 +42,7 @@ class MessageViewSet(viewsets.ModelViewSet):
                             return "noData"
                         # print("11",condition[high_class][k])
                         # if str(i for i in condition[high_class][k]) in question:
-                        #     print("잇음")
+                        #     print("있음")
                         # else:
                         #     print("here : ",(i for i in condition[high_class][k]))
                         #     print("없음")
