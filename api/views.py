@@ -54,12 +54,23 @@ class MessageViewSet(viewsets.ModelViewSet):
     @staticmethod
     def process_answer(answer_class):
         base_path = "answer/"
-        with open(base_path + answer_class, "r", encoding="utf-8") as f:
-            lines = f.readlines()
-            number = len(lines)
-            i = randint(1, number)
-            answer = lines[i - 1]
-            return answer
+        condition = ["weather","dirtcast"]
+
+        if answer_class in condition : # 단일 파일 내용 리턴
+            with open(base_path + answer_class, "r", encoding="utf-8") as f:
+                lines = f.readlines()
+                answer = ''
+                for line in lines:
+                    answer = str(line) + answer
+                return answer
+
+        else: # 라인별 리턴
+            with open(base_path + answer_class, "r", encoding="utf-8") as f:
+                lines = f.readlines()
+                number = len(lines)
+                i = randint(1, number)
+                answer = lines[i - 1]
+                return answer
 
     def create(self, request, *args, **kwargs):
         person = request.data['person']
