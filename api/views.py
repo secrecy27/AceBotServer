@@ -59,7 +59,7 @@ class MessageViewSet(viewsets.ModelViewSet):
                 lines = f.readlines()
                 answer = ''
                 for line in lines:
-                    answer = str(line) + answer
+                    answer = answer + str(line)
                 return answer
 
         else : # 파일 내용을 라인별 무작위 반환
@@ -74,7 +74,6 @@ class MessageViewSet(viewsets.ModelViewSet):
         person = request.data['person']
         text = request.data['text']
         answer = self.process_request(text)
-
 
         result = {}
         result['person'] = person
