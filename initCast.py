@@ -48,7 +48,7 @@ def getDirt(): # 미세먼지
 
     castDirt = bs_obj.findAll("textarea", {"name": "textarea"})
     castDirt = '<오늘>\n' + castDirt[0].text + '\n<내일>\n' + castDirt[1].text
-    return prefixDirt() + castDirt + sufixDirt()
+    return prefixDirt() + castDirt + '\n' + sufixDirt()
 
 
 def initCast(): # 파일 초기화하여 쓰기
