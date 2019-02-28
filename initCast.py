@@ -37,8 +37,12 @@ def getWeather(): # 날씨
     casttime = casttime.text
     forecast = forecast.get_text(strip=True, separator='\n')
     forecast = forecast.split('\n')
-    forecast = forecast[7] # 오늘날씨만 출력
-    return prefixWeather() + casttime + '\n' + forecast
+    for list in forecast : # 오늘 날씨만 출력
+        if '오늘' in list :
+            forecast = list
+    forecast = prefixWeather() + casttime + '\n' + forecast
+    print(forecast) # 출력한번 해주기
+    return forecast
 
 
 def getDirt(): # 미세먼지
@@ -46,18 +50,30 @@ def getDirt(): # 미세먼지
     html = urllib.request.urlopen(url)
     bs_obj = BeautifulSoup(html, "html.parser")
 
-    castDirt = bs_obj.findAll("textarea", {"name": "textarea"})
-    castDirt = '<오늘>\n' + castDirt[0].text + '\n<내일>\n' + castDirt[1].text
-    return prefixDirt() + castDirt + '\n' + sufixDirt()
+    castDirt = bs_obj.findAll("dl", {"class": "forecast MgT50"})
+    castDirt = castDirt[0]
+
+    date = castDirt.find("dt").text # 오늘 날짜만 추출
+    castDirt = castDirt.find("div", {"class": "txtbox"})
+    castDirt = castDirt.text
+    castDirt = date + '\n' + castDirt
+
+    castDirt = prefixDirt() + castDirt + '\n' + sufixDirt()
+    print(castDirt)
+    return castDirt
 
 
 def initCast(): # 파일 초기화하여 쓰기
     f = open('answer/weather', mode='w', encoding='utf-8')
     f.write(getWeather())
     f.close()
+    print('write weather success.')
 
     f = open('answer/dirtcast', mode='w', encoding='utf-8')
     f.write(getDirt())
     f.close()
+    print('write dirt success.')
 
+# getDirt()
+# getWeather()
 initCast()
