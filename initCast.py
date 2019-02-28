@@ -58,7 +58,8 @@ def getDirt(): # 미세먼지
     castDirt = castDirt.text
     castDirt = date + '\n' + castDirt
 
-    castDirt = prefixDirt() + castDirt + '\n' + sufixDirt()
+    # castDirt = prefixDirt() + castDirt + '\n' + sufixDirt() # 봇 호출용
+    castDirt = prefixDirt() + castDirt
     print(castDirt)
     return castDirt
 
