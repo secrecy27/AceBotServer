@@ -40,6 +40,7 @@ def getWeather(): # 날씨
     for list in forecast : # 오늘 날씨만 출력
         if '오늘' in list :
             forecast = list
+            break
     forecast = prefixWeather() + casttime + '\n' + forecast
     print(forecast) # 출력한번 해주기
     return forecast

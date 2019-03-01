@@ -4,3 +4,4 @@ pymysql
 mysql-python
 mysqlclient
 nltk
+bs4
