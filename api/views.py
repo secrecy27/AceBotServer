@@ -17,7 +17,11 @@ class MessageViewSet(viewsets.ModelViewSet):
         high_class, high_score = n.classify(question)
         print("question : ", question, "/ class : ", high_class, "/ score : ", high_score)
 
-        path = os.path.dirname(os.path.realpath(__file__))+'../conversation'
+        # path = os.path.dirname(os.path.realpath(__file__))+'../conversation'
+        path = '/home/ace/ace-bot/AceBotServer/conversation'
+
+        print(path)
+
         # className에 카테고리 추가, conversation 디렉터리안의 파일로 참조
 
         className = []
