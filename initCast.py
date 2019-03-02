@@ -3,6 +3,7 @@
 import urllib.request
 import secrets
 from bs4 import BeautifulSoup
+import os
 
 
 def prefixWeather():
@@ -66,16 +67,18 @@ def getDirt(): # 미세먼지
 
 
 def initCast(): # 파일 초기화하여 쓰기
-    f = open('answer/weather', mode='w', encoding='utf-8')
+    path = os.path.dirname(os.path.realpath(__file__))
+    f = open(path + '/' + 'answer/weather', mode='w', encoding='utf-8')
     f.write(getWeather())
     f.close()
     print('write weather success.')
 
-    f = open('answer/dirtcast', mode='w', encoding='utf-8')
+    f = open(path + '/' + 'answer/dirtcast', mode='w', encoding='utf-8')
     f.write(getDirt())
     f.close()
     print('write dirt success.')
 
 # getDirt()
 # getWeather()
+
 initCast()
