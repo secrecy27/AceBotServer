@@ -10,6 +10,8 @@ python manage.py makemigrations
 python manage.py migrate
 ### 실행
 python manage.py runserver
+### nohup을 이용한 runserver.sh 실행 가능
+sh runserver.sh
 
 # 대화 추가 방법
 ### 1. conversation 디렉토리에 질문에 해당하는 내용을 작성합니다.

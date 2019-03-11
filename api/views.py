@@ -9,6 +9,13 @@ from .serializers import MessageSerializer
 import os
 
 class MessageViewSet(viewsets.ModelViewSet):
+    # def check_call_bot(self, question):
+    #     bot_name = '엘라'
+    #     if ( bot_name in question ):
+    #         pass
+    #     else:
+    #         return "noData"
+
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
 
