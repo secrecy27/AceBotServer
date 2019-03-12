@@ -67,7 +67,7 @@ class MessageViewSet(viewsets.ModelViewSet):
     @staticmethod
     def process_answer(answer_class):
         base_path = "answer/"
-        condition = ["weather","dirtcast"]
+        condition = ["weather","dirtcast","predict_coin"]
 
         if answer_class in condition : # 단일 파일 내용을 통째로 반환
             with open(base_path + answer_class, "r", encoding="utf-8") as f:
