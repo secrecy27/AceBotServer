@@ -43,7 +43,7 @@ def getWeather(): # 날씨
         if '오늘' in list :
             forecast = list
             break
-    forecast = prefixWeather() + casttime + '\n' + forecast
+    forecast = str(prefixWeather()) + str(casttime) + '\n' + str(forecast)
     print(forecast) # 출력한번 해주기
     return forecast
 
