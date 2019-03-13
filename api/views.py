@@ -8,35 +8,44 @@ from .models import Message
 from .serializers import MessageSerializer
 import os
 
-class MessageViewSet(viewsets.ModelViewSet):
+
+class MessageViewSet (viewsets.ModelViewSet):
     def check_call_bot(self, question):
         bot_name = '엘라'
-        if ( bot_name in question ):
+        if bot_name in question:
             return True
         else:
             return False
+
+    def remove_bot_name(self, question):
+
+        question = question.replace('엘라야','')
+        question = question.replace('엘라', '')
+        return question
 
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
 
     def process_request(self, question):
         if self.check_call_bot(question) == True:
+            question_no_botname = self.remove_bot_name(question)  # 비교시 엘라 단어 제거
             n = Naive_bayes()
-            high_class, high_score = n.classify(question)
+            high_class, high_score = n.classify(question_no_botname)
+
+            call_bot_name = ["엘라야", "엘라님", "엘라", "엘라씨"]
+            if question in call_bot_name:
+                high_class = "ella"
+                high_score = 1
+
             print("question : ", question, "/ class : ", high_class, "/ score : ", high_score)
 
             path = os.path.dirname(os.path.realpath(__file__))+'/../conversation'
 
-            # print(path)
-
-            # className에 카테고리 추가, conversation 디렉터리안의 파일로 참조
-
+            
             className = []
-            for fileName in os.listdir(path):
+            for fileName in os.listdir(path): # conversation 경로의 파일들을 className 리스트 삽입
                 className.append(fileName)
-            # className = ["daios", "member", "private_sale", "homepage", "greeting", "morning",
-            #              "lunch", "congratulations", "laugh", "ella",
-            #              "whitepaper", "event", "advertising", "weather", "dirtcast"]
+           
             condition = {"whitepaper": {"word": "백서"}, "event": {"word": "이벤트"},
                          "advertising": {"length": "100", "word": "http"}}
 

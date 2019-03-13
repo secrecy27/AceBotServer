@@ -1,0 +1,4 @@
+my_account = {
+    'id': 'my_id@gmail.com',
+    'pass': 'my_password'
+}

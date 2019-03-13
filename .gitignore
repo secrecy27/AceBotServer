@@ -210,3 +210,5 @@ botConfig/
 .vscode
 get_auth.py
 predict_gui.py
+drivers
+myconfig.py
