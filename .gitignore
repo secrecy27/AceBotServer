@@ -208,7 +208,3 @@ dmypy.json
 # custom config
 botConfig/
 .vscode
-get_auth.py
-predict_gui.py
-drivers
-myconfig.py
