@@ -208,3 +208,4 @@ dmypy.json
 # custom config
 botConfig/
 .vscode
+predict_coin.py
