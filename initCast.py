@@ -8,7 +8,7 @@ import os
 
 def prefixWeather():
     words = ['날씨 답변 갑니다!(방긋)\n',
-             '봄이 오네요~(방긋)\n',
+             # '봄이 오네요~(방긋)\n',
              '엘라는 모르는게 없죠. 날씨정보입니다.(방긋)\n'
              ]
     return secrets.choice(words)
